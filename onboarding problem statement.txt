@@ -1,0 +1,99 @@
+onboarding problem statement
+
+For a customer onboarding POC for a Zerodha-like platform, keep the data model lean and focused on tracking the onboarding journey end-to-end.
+Tables
+Core Customer Tables
+Customer
+Customer master record
+Mobile, email, name, status
+Onboarding_Application
+One onboarding application per onboarding attempt
+Application status, start date, completion date, source channel
+Onboarding_Step_Master
+Master list of onboarding steps
+Mobile Verification, PAN Verification, Bank Verification, eSign, etc.
+Onboarding_Step_Status
+Tracks progress of each customer through each step
+Status, timestamps, failure reasons
+Verification & Compliance Tables
+Customer_KYC
+PAN/Aadhaar details
+KYC verification status
+Customer_Bank
+Bank account details
+Verification status
+Customer_Document
+Uploaded documents
+Verification status
+Compliance_Review
+Manual review and approval/rejection details
+Analytics & Tracking Tables
+Customer_Event
+Event-level tracking
+OTP Verified, KYC Completed, eSign Completed, Account Activated, etc.
+KPIs
+Funnel KPIs
+Total Leads
+Onboarding Started
+Mobile Verified
+KYC Completed
+Documents Uploaded
+eSign Completed
+Approved Accounts
+Activated Accounts
+Conversion KPIs
+Onboarding Completion Rate
+Activated Accounts ÷ Applications Started
+KYC Success Rate
+KYC Verified ÷ KYC Submitted
+Approval Rate
+Approved Accounts ÷ Applications Submitted
+Activation Rate
+Activated Accounts ÷ Approved Accounts
+Drop-off KPIs
+Step-wise Drop-off %
+Mobile → KYC
+KYC → Documents
+Documents → eSign
+eSign → Approval
+Highest Drop-off Step
+Operational KPIs
+Average Onboarding TAT
+Start to Activation
+Median Onboarding TAT
+Pending Applications
+Pending KYC Cases
+Pending Compliance Reviews
+Rejected Applications
+Channel KPIs
+Applications by Channel
+Web / Android / iOS / Referral
+Completion Rate by Channel
+Approval Rate by Channel
+Activation Rate by Channel
+For a Business Dashboard (POC)
+The top 8 KPIs I'd prioritize are:
+Total Leads
+Applications Started
+Onboarding Completion Rate
+KYC Success Rate
+Approval Rate
+Activation Rate
+Average Onboarding TAT
+Step-wise Drop-off Analysis
+These are sufficient to demonstrate the entire onboarding journey and identify conversion bottlenecks.
+ 
+for KPIs we can pick 4-5 to visualize based on synthetic generated
+ 
+but broadly we would need below tables in onboarding journey
+Customer table - To keep customer information based on registration
+Document Table - to keep customer document information
+Address table - to keep address details - to identify region , state etc
+Customer bank details
+Customer verification status - registered, KYC pending, bank details pending etc
+Compliance(from broker side) - this for backend verification
+Activation table
+ 
+Problem Statement:
+Design and implement a robust customer onboarding module for a stockbroking platform similar to Zerodha, covering the complete journey from user registration through KYC verification, bank account linking, e-signature, and trading account activation. The solution should define a normalized backend database schema capturing user profiles, KYC documents, verification statuses, and stage-wise progress. It must include scheduled jobs and database processes to automate status transitions, handle third-party verification callbacks (PAN, Aadhaar, bank), trigger reminders for drop-offs, and ensure data consistency across onboarding stages. Finally, build a Tableau dashboard visualizing funnel metrics such as stage-wise conversion rates, drop-off points, and average time-to-activation for stakeholder monitoring.
+ 
