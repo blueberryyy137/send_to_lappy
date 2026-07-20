@@ -1,0 +1,95 @@
+full architecture:
+
+                  Source CSV Files
+                       │
+                       ▼
+                  Amazon S3 (Raw)
+                       │
+                       ▼
+                  AWS Lambda
+                       │
+                       ▼
+              AWS Step Functions
+                       │
+                       ▼
+                AWS Glue (PySpark)
+        ┌─────────────────────────────────┐
+        │ • Data Cleaning                 │
+        │ • Data Validation               │
+        │ • Data Transformation           │
+        └─────────────────────────────────┘
+                       │
+                       ▼
+              	      RDS (PostgrSQL)
+                       │
+                 dbt Transformations
+        ┌─────────────────────────────────┐
+        │ • Star Schema                   │
+        │ • Fact Tables                   │
+        │ • Dimension Tables              │
+        │ • KPI Models                    │
+        └─────────────────────────────────┘
+                       │
+          ┌────────────┴────────────┐
+          ▼                         ▼
+   Tableau Dashboard         FastAPI Backend
+   (KPIs & Visuals)                │
+          │                        ▼
+          │                  LangChain Router
+          │                 ┌────────┴────────┐
+          │                 ▼                 ▼
+          │           Text-to-SQL             RAG
+          │                 │                 │
+          │          Amazon RDS          FAISS Vector DB
+          │                 │                 ▲
+          └─────────────────┴─────────────────┘
+                            │
+                       OpenAI / LLM
+
+
+
+- RDS use:
+
+
+CSV Files
+
+↓
+
+Amazon S3
+
+↓
+
+Lambda
+
+↓
+
+Step Functions
+
+↓
+
+Glue
+
+↓
+
+RDS Bronze Tables
+
+↓
+
+Glue
+
+↓
+
+RDS Silver Tables
+
+↓
+
+dbt
+
+↓
+
+RDS Gold Tables
+
+↓
+
+Tableau
+
